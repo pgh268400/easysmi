@@ -97,6 +97,7 @@ def file_save(path, shifted_data):
         f = open(path, "w", encoding='utf-8')
         f.write(output)
         f.close()
-        print(path, "작업이 완료되었습니다.")
+        return True
     except Exception as e:
         print(e)
+        return False
