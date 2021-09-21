@@ -19,6 +19,7 @@ pip uninstall easysmi
 
 ## How to Use
 ```python
+from easysmi import *
 path = "C:/[SubsPlease] Tokyo Revengers - 01.smi"
 p = parse_smi(path)
 ```
