@@ -83,6 +83,8 @@ print(r['main'][0:5])
 
 ## S(sponsored) 자막을 NS(non-sponsored) 자막으로 쉽게 바꾸기
 
+![image](https://user-images.githubusercontent.com/31213158/134211650-89ec18d8-ef05-4a99-bdd4-f198b89b58d6.png)
+
 애니메이션을 보다 보면 영상 시작전 10초 정도 다음과 같은 화면에서 스폰서(후원자)가 표시되고 영상이 진행되는 경우가 많습니다. 
 
 보통 방영중인 애니메이션이 한참 방영중일때는 릴그룹이 방영중인 TV영상을 파일로 변환해서 배포하기 때문에 자막 작업 하시는 분들도 이 스폰서가 중간에 껴있는걸 기준으로 작업하시는 경우가 많습니다.  
@@ -150,4 +152,4 @@ find_line_by_regex(p, "pattern"):
 ### Bug Report
 
 버그 발견시 해당 Github 사이트 내의 Issues 탭을 이용해 제보 부탁드립니다.
-
+또한 개선점도 제보 해주시면 좋습니다.
