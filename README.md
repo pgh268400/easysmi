@@ -69,6 +69,18 @@ file_save(new_path, s)
 
 
 
+**smi에서 첫번째 항목 제거**
+
+```python
+path = "C:/[SubsPlease] Tokyo Revengers - 01.smi"
+p = parse_smi(path)
+print(p['main'][0:5])
+r = remove_line(p, 0)
+print(r['main'][0:5])
+```
+
+
+
 ## S(sponsored) 자막을 NS(non-sponsored) 자막으로 쉽게 바꾸기
 
 애니메이션을 보다 보면 영상 시작전 10초 정도 다음과 같은 화면에서 스폰서(후원자)가 표시되고 영상이 진행되는 경우가 많습니다. 
@@ -80,3 +92,62 @@ file_save(new_path, s)
 
 
 그런데 시간이 지나면서 BD판이 뜨고, 편집본이 뜨다보면 중간에 스폰서가 편집상 사라지는 경우가 99%인데 스폰서를 기준으로 작업한 것은 싱크가 10초정도 어긋나게 됩니다. 
+
+보통 다음팟플레이어 같은 것으로 -10초를 하게 되면 싱크가 대부분 맞게 되는데 전체적으로 -10초 되는 것이기 때문에 앞의 오프닝의 싱크가 맞지 않는 불상사가 생깁니다. 물론 오프닝은 대부분 몇번만 보고 스킵하겠지만 저는 이게 불편해서 해당 라이브러리를 제작 했습니다.
+
+
+
+```python
+#단일 파일 처리
+
+folder = 'C:/자막/'
+filename = '[SubsPlease] Tokyo Revengers - 02 (1080p) [B66CEAA7].smi'
+
+p = parse_smi(folder + filename)
+search_line = find_line_by_text(p, "sub by")
+
+if search_line != -1:
+    s = sync_shift(p, search_line, -10000)
+    s = sync_shift(s, 0, 1300)
+    
+    make_dirs(folder + 'output') #make output folder
+    new_path = folder + "output/" + filename
+    file_save(new_path, s)
+else:
+    print("cannot find item")
+```
+
+다음 예제는 해당 자막이 sub by 제작자가 뜨고 나서 스폰서가 뜨는데 제가 받은 영상엔 스폰서가 없어서 싱크가 맞지 않습니다.
+
+sub by 위치부터 자막 끝까지 -10초로 싱크를 조절하고 다시 전체적으로 +1.3초를 한 뒤 output 폴더에 저장하는 예시입니다.
+
+
+
+```python
+find_line_by_text(p, "sub by")
+```
+
+find_line_by_text 함수는 파싱된 자막 데이터 내에서 인자로 들어온 string 값의 포함여부를 확인하고 그 line 위치를 반환합니다.
+
+찾지 못한다면 -1을 반환 합니다.
+
+
+
+```python
+find_line_by_regex(p, "pattern"):
+```
+
+또한 정규식을 통한 검색도 지원 합니다. 단, 정규식에서 처음으로 match 된 string의 위치를 반환 합니다.
+
+찾지 못한다면 -1을 반환 합니다.
+
+
+
+지원되는 함수를 이용해 자유롭게 자막 작업을 하시길 바랍니다.
+
+
+
+### Bug Report
+
+버그 발견시 해당 Github 사이트 내의 Issues 탭을 이용해 제보 부탁드립니다.
+
