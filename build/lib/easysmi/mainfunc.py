@@ -1,16 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 import re,os,json
 import chardet
 from subfunc import *
-
-
-# In[2]:
-
 
 '''
 Author: pgh268400 (https://pgh268400.tistory.com/)
@@ -81,6 +71,11 @@ def sync_shift(parsed_data, start_line, shift_amount):
         i+=1
     return parsed_data
 
+def remove_line(parsed_data, remove_line):
+    parsed_data['main'].pop(remove_line)
+    parsed_data['line'] = len(parsed_data['main'])
+    return parsed_data
+
 #path => 파일 저장 경로
 #shifted_data => 덮어 씌울 싱크 작업된 parsed_data
 def file_save(path, shifted_data):
@@ -105,71 +100,3 @@ def file_save(path, shifted_data):
         print(path, "작업이 완료되었습니다.")
     except Exception as e:
         print(e)
-
-
-# In[3]:
-
-
-#단일 파일 처리
-
-folder = 'C:/Users/File/자막/'
-filename = '[SubsPlease] Tokyo Revengers - 02 (1080p) [B66CEAA7].smi'
-
-p = parse_smi(folder + filename)
-search_line = find_line_by_text(p, "sub by")
-
-if search_line != -1:
-    s = sync_shift(p, search_line, -10000)
-    s = sync_shift(s, 0, 1300)
-    
-    make_dirs(folder + 'output') #make output folder
-    new_path = folder + "output/" + filename
-    file_save(new_path, s)
-else:
-    print("cannot find item")
-
-
-# In[ ]:
-
-
-#폴더안에 있는 것 일괄 처리
-folder = 'C:/Users/File/자막/'
-file_list = os.listdir(folder)
-
-for filename in file_list:
-    if filename.endswith('.smi'):
-        p = parse_smi(folder + filename)
-        search_line = find_line_by_text(p, "sub by")
-        if search_line != -1:
-            s = sync_shift(p, search_line, -10000)
-
-            make_dirs(folder + 'output') #make output folder
-            new_path = folder + "output/" + filename
-            file_save(new_path, s)
-        else:
-            print("cannot find item")
-
-
-# In[ ]:
-
-
-folder = 'C:/Users/File/자막/'
-filename = '[SubsPlease] Tokyo Revengers - 02 (1080p) [B66CEAA7].smi'
-
-p = parse_smi(folder + filename)
-print(p['line'])
-search_line = find_line_by_text(p, "sub by")
-print(search_line)
-
-
-# In[ ]:
-
-
-len([[],[],[]])
-
-
-# In[ ]:
-
-
-
-
