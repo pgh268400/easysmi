@@ -4,6 +4,7 @@
 
 ## install
 ```python
+pip install chardet
 pip install git+https://github.com/pgh268400/easysmi
 ```
 다음 명령어를 입력하여 라이브러리를 설치합니다.
