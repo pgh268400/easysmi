@@ -1,0 +1,9 @@
+README.md
+setup.cfg
+setup.py
+easysmi.egg-info/PKG-INFO
+easysmi.egg-info/SOURCES.txt
+easysmi.egg-info/dependency_links.txt
+easysmi.egg-info/not-zip-safe
+easysmi.egg-info/requires.txt
+easysmi.egg-info/top_level.txt
