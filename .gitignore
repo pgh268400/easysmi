@@ -1,1 +1,4 @@
-
+build/
+dist/
+*-info/
+easysmi.egg-info/

@@ -1,6 +1,7 @@
 README.md
 setup.cfg
 setup.py
+easysmi/__init__.py
 easysmi.egg-info/PKG-INFO
 easysmi.egg-info/SOURCES.txt
 easysmi.egg-info/dependency_links.txt

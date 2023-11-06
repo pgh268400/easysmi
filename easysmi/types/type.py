@@ -12,4 +12,4 @@ class ParsedSMI:
     raw: str
     text: list[str]
     line: int
-    type : Optional[str]
+    type: Optional[str]
