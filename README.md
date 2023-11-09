@@ -223,7 +223,7 @@ s = sync_shift_after_specific_index(p, 0, 10000)
 ```python
 path = "C:/test.smi"
 p = parse_smi(path)
-s = sync_shift(p, 0, 2000)
+s = sync_shift_after_specific_index(p, 0, 2000)
 
 new_path = "enter_your_save_path_here"
 smi_file_save(new_path, s)
